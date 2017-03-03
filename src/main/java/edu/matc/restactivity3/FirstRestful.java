@@ -22,6 +22,7 @@ public class FirstRestful extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add(RestClass.class );
+        h.add(RestClass2.class );
         return h;
     }
 }
