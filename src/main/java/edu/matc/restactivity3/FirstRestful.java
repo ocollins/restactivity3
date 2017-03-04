@@ -23,6 +23,7 @@ public class FirstRestful extends Application {
         HashSet h = new HashSet<Class<?>>();
         h.add(RestClass.class );
         h.add(RestClass2.class );
+        h.add(ActivityResource.class);
         return h;
     }
 }

@@ -1,3 +1,7 @@
-edu/matc/restactivity3/RestClass.class
-edu/matc/restactivity3/RestClass2.class
+edu/matc/restactivity3/ActivityResource.class
 edu/matc/restactivity3/FirstRestful.class
+edu/matc/restactivity3/RestClass.class
+edu/matc/restactivity3/SessionFactoryProvider.class
+edu/matc/restactivity3/ActivityDao.class
+edu/matc/restactivity3/RestClass2.class
+edu/matc/restactivity3/Activity.class
