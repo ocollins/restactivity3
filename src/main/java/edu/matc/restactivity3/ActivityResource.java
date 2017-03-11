@@ -9,6 +9,9 @@ import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.*;
 
 /**
@@ -27,27 +30,37 @@ public class ActivityResource {
         List<Activity> activityList;
         ActivityDao dao = new ActivityDao();
         activityList = dao.getAllActivities();
-        return Response.status(200).entity(activityList.get(7).getName()).build();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = null;
+        try {
+            jsonInString = mapper.writeValueAsString(activityList.get(7));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return Response.status(200).entity(jsonInString).build();
     }
 
     @GET
     @Path("/list")
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getAllActivities() {
+    public Response getAllActivities() throws JsonProcessingException {
         List<Activity> activityList;
+
         ActivityDao dao = new ActivityDao();
         activityList = dao.getAllActivities();
+
+        ObjectMapper mapper = new ObjectMapper();
         String allActivities = null;
-        for(Activity activity: activityList) {
-            allActivities = allActivities + activity.toString();
+
+        for (Activity activity : activityList) {
+            allActivities = allActivities + mapper.writeValueAsString(activity);
 
         }
 
-        return Response.status(200).entity(allActivities).build();
 
-        //logger.info("&&&&&&&&&&&&&&& " + activityList.get(7).getName());
-        //return Response.status(200).entity(activityList.get(7).getName()).build();
-        //return Response.ok().type(MediaType.APPLICATION_JSON_TYPE).build();
+        return Response.status(200).entity(allActivities).build();
 
     }
 
